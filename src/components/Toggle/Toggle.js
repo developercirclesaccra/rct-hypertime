@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Toggle.css';
 
 //CHILD COMPONENTS
-import Clock from '../Clock/Clock';
 import Timer from '../Timer/Timer'
 
 class Toggle extends Component {
@@ -28,62 +27,37 @@ class Toggle extends Component {
         this.onClickReset = this.onClickReset.bind(this);
     }
 
-    onClickPlay(){
-        if(!this.state.playButtonPressed){
-        this.accessChild();
-        this.setState(playButtonPressedValue => ({ playButtonPressed: !playButtonPressedValue.playButtonPressed}));
+    onClickPlay() {
+        this.setState(playButtonPressedValue => ({ playButtonPressed: !playButtonPressedValue.playButtonPressed }));
 
-        this.setState({playImageSource: './Images/playActive.svg'});
-        // if(!this.state.playButtonPressed){
-        //     this.setState({playImageSource: './Images/playActive.svg'});
-        // }
-        // else {
-        //     this.setState({playImageSource: './Images/play.svg'});
-        // }
-
-        //console.log(`Play Button Currently Clicked?: ${this.state.playButtonPressed}`);
-    }
-    else {
-        return
-    }
-    }
-
-    onClickPause(){
-        if(!this.state.pauseButtonPressed){
-            this.setState(pauseButtonPressedValue => ({ pauseButtonPressed: !pauseButtonPressedValue.pauseButtonPressed }));
-
-        // if (!this.state.pauseButtonPressed) {
-        //     this.setState({ pauseImageSource: './Images/pauseActive.svg' });
-        // }
-        // else {
-        //     this.setState({ pauseImageSource: './Images/pause.svg' });
-        // }
-        this.setState({ pauseImageSource: './Images/pauseActive.svg' });
-        }    
-        else {
-            return;
+        if (!this.state.playButtonPressed) {
+            this.accessChild();     
+            this.setState({ playImageSource: './Images/playActive.svg' });
         }
-
-        console.log(`Pause Button Currently Clicked?: ${this.state.pauseButtonPressed}`);
+        else {
+            this.setState({ playImageSource: './Images/play.svg' });
+        }
     }
 
+    onClickPause(){   
+        this.setState(pauseButtonPressedValue => ({ pauseButtonPressed: !pauseButtonPressedValue.pauseButtonPressed }));
+        if (!this.state.pauseButtonPressed) {    
+            this.setState({ pauseImageSource: './Images/pauseActive.svg' });
+        }
+        else {
+            this.setState({ pauseImageSource: './Images/pause.svg' });
+        }
+    }    
+       
     onClickStop(){
-        if(!this.state.stopButtonPressed){
+        this.setState(stopButtonPressedValue => ({ stopButtonPressed: !stopButtonPressedValue.stopButtonPressed }));
+        
+        if(!this.state.stopButtonPressed){          
             this.setState({ stopImageSource: './Images/stopActive.svg' });
         }
         else {
-            return
+            this.setState({ stopImageSource: './Images/stop.svg' });
         }
-        // this.setState(stopButtonPressedValue => ({ stopButtonPressed: !stopButtonPressedValue.stopButtonPressed }));
-
-        // if (!this.state.stopButtonPressed) {
-        //     this.setState({ stopImageSource: './Images/stopActive.svg' });
-        // }
-        // else {
-        //     this.setState({ stopImageSource: './Images/stop.svg' });
-        // }
-
-        console.log(`Stop Button Currently Clicked?: ${this.state.stopButtonPressed}`);
     }
 
     onMouseOverReset(){             
@@ -100,7 +74,6 @@ class Toggle extends Component {
 
     accessChild() {
         this.refs.child.accessChild();
-        //console.log(this.refs.child)
     }
 
     render() {

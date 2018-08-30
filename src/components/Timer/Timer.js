@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Timer.css';
 import Clock from '../Clock/Clock'
 
-var allTimeInSeconds
 
 class Timer extends Component {
     constructor(props){
