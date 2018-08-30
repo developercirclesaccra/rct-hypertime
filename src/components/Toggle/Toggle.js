@@ -5,7 +5,7 @@ import './Toggle.css';
 import Timer from '../Timer/Timer'
 
 class Toggle extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -31,7 +31,7 @@ class Toggle extends Component {
         this.setState(playButtonPressedValue => ({ playButtonPressed: !playButtonPressedValue.playButtonPressed }));
 
         if (!this.state.playButtonPressed) {
-            this.accessChild();     
+            this.accessChild();
             this.setState({ playImageSource: './Images/playActive.svg' });
         }
         else {
@@ -39,20 +39,20 @@ class Toggle extends Component {
         }
     }
 
-    onClickPause(){   
+    onClickPause() {
         this.setState(pauseButtonPressedValue => ({ pauseButtonPressed: !pauseButtonPressedValue.pauseButtonPressed }));
-        if (!this.state.pauseButtonPressed) {    
+        if (!this.state.pauseButtonPressed) {
             this.setState({ pauseImageSource: './Images/pauseActive.svg' });
         }
         else {
             this.setState({ pauseImageSource: './Images/pause.svg' });
         }
-    }    
-       
-    onClickStop(){
+    }
+
+    onClickStop() {
         this.setState(stopButtonPressedValue => ({ stopButtonPressed: !stopButtonPressedValue.stopButtonPressed }));
-        
-        if(!this.state.stopButtonPressed){          
+
+        if (!this.state.stopButtonPressed) {
             this.setState({ stopImageSource: './Images/stopActive.svg' });
         }
         else {
@@ -60,7 +60,7 @@ class Toggle extends Component {
         }
     }
 
-    onMouseOverReset(){             
+    onMouseOverReset() {
         this.setState({ resetImageSource: './Images/resetActive.svg' });
     }
 
@@ -78,14 +78,14 @@ class Toggle extends Component {
 
     render() {
         return (
-            <div>       
-                <Timer ref="child"/>
-            <div className='d-flex justify-content-center pt-5'>
-                <i className="play" ><img onClick={this.onClickPlay} src={require(`${this.state.playImageSource}`)} alt=""></img></i>
-                <i className="pause"><img onClick={this.onClickPause} src={require(`${this.state.pauseImageSource}`)} alt=""></img></i>
-                <i className="stop"><img onClick={this.onClickStop} src={require(`${this.state.stopImageSource}`)} alt=""></img></i>
-                <i className="reset"><img onMouseOver={this.onMouseOverReset} onMouseLeave={this.onMouseLeaveReset} onClick={this.onClickReset} src={require(`${this.state.resetImageSource}`)} alt=""></img></i>
-            </div>
+            <div>
+                <Timer ref="child" />
+                <div className='d-flex justify-content-center pt-5'>
+                    <i className="play" ><img onClick={this.onClickPlay} src={require(`${this.state.playImageSource}`)} alt=""></img></i>
+                    <i className="pause"><img onClick={this.onClickPause} src={require(`${this.state.pauseImageSource}`)} alt=""></img></i>
+                    <i className="stop"><img onClick={this.onClickStop} src={require(`${this.state.stopImageSource}`)} alt=""></img></i>
+                    <i className="reset"><img onMouseOver={this.onMouseOverReset} onMouseLeave={this.onMouseLeaveReset} onClick={this.onClickReset} src={require(`${this.state.resetImageSource}`)} alt=""></img></i>
+                </div>
             </div>
         );
     }
