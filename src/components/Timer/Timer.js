@@ -18,8 +18,6 @@ class Timer extends Component {
         this.grabMinutes = this.grabMinutes.bind(this);
         this.grabSeconds = this.grabSeconds.bind(this);
         this.changeAllTimeInputsToSeconds = this.changeAllTimeInputsToSeconds.bind(this);
-
-
     }
 
     changeAllTimeInputsToSeconds() {
@@ -30,10 +28,7 @@ class Timer extends Component {
         var allTimeInSeconds = timerHours + timerMinutes + timerSeconds;
         this.setState({ timeToCountdown: allTimeInSeconds })
         console.log(this.state.timeToCountDown);
-
-
     }
-
 
     grabHours() {
         this.setState({ hours: this.hours.value });
@@ -41,14 +36,12 @@ class Timer extends Component {
     }
 
     grabMinutes() {
-        this.setState({ minutes: this.minutes.value });
-        //console.log(parseInt(this.minutes.value, 10))   
+        this.setState({ minutes: this.minutes.value });  
         this.changeAllTimeInputsToSeconds();
     }
 
     grabSeconds() {
         this.setState({ seconds: this.seconds.value });
-        //console.log(parseInt(this.seconds.value, 10));
         this.changeAllTimeInputsToSeconds();
     }
 
@@ -58,13 +51,12 @@ class Timer extends Component {
     }
 
     changeTime() {
-        this.refs.child.timeIt();
+        this.refs.child.clockTicking();
     }
 
     render() {
         var timeLeft = this.state.timeToCountdown;
         var startCountdown = this.refs.child;
-        //console.log(this.refs.child)
         return (
             <div>
                 <Clock ref="child" timeLeft={timeLeft} startCountdown={startCountdown} />

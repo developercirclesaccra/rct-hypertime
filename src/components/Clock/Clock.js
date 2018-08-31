@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './Clock.css';
 
+
+var timerID;
+
 class Clock extends Component {
     constructor(props) {
         super(props);
@@ -9,22 +12,29 @@ class Clock extends Component {
             hours: 0,
             minutes: 0,
             seconds: 0,
-            timeLeft: 5
+            timeLeft: ""
         }
 
         this.timeIt = this.timeIt.bind(this);
     }
 
-    
+
+
+
     timeIt() {
 
         this.setState({ hours: this.state.hours + 1 });
-        this.setState({timeLeft: this.props.timeLeft - 1})
-        setInterval(this.convertSeconds, 1000)
+        this.setState({ timeLeft: this.props.timeLeft - this.state.hours })
     }
 
+    clockTicking() {
+        timerID = setInterval(this.timeIt, 1000)
+    }
 
     convertSeconds(time) {
+        if (this.state.timeLeft === 0) {
+            clearInterval(timerID)
+        }
 
         var minutes = Math.floor((time / 60) % 60);
         var hours = Math.trunc((time - (time % 60)) / 3600);
@@ -33,11 +43,8 @@ class Clock extends Component {
         return `${hours}:${minutes}:${seconds}`
     }
 
-    render() {
-        setInterval(() => {
-            this.setState({timeLeft: this.state.timeLeft - 1})
-        }, 1000)
 
+    render() {
         return (
             <div className="App-headerclock text-center">
                 <p className="display-2">{this.convertSeconds(this.props.timeLeft - this.state.hours)}</p>
