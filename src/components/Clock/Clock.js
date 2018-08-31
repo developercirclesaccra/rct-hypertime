@@ -33,12 +33,12 @@ class Clock extends Component {
 
     convertSeconds(time) {
         if (this.state.timeLeft === 0) {
-            clearInterval(timerID)
+            clearInterval(timerID)                  
         }
 
-        var minutes = Math.floor((time / 60) % 60);
-        var hours = Math.trunc((time - (time % 60)) / 3600);
-        var seconds = time % 60;
+        let hours = Math.trunc((time - (time % 60)) / 3600);
+        let minutes = Math.floor((time / 60) % 60);      
+        let seconds = time % 60;
 
         return `${hours}:${minutes}:${seconds}`
     }
