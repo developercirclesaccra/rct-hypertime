@@ -17,17 +17,10 @@ class Toggle extends Component {
             pauseImageSource: './Images/pause.svg',
             stopImageSource: './Images/stop.svg',
             resetImageSource: './Images/reset.svg',
-        };
-
-        this.onClickPlay = this.onClickPlay.bind(this);
-        this.onClickPause = this.onClickPause.bind(this);
-        this.onClickStop = this.onClickStop.bind(this);
-        this.onMouseOverReset = this.onMouseOverReset.bind(this);
-        this.onMouseLeaveReset = this.onMouseLeaveReset.bind(this);
-        this.onClickReset = this.onClickReset.bind(this);
+        }
     }
 
-    onClickPlay() {
+    onClickPlay = () => {
         this.setState(playButtonPressedValue => ({ playButtonPressed: !playButtonPressedValue.playButtonPressed }));
 
         if (!this.state.playButtonPressed) {
@@ -39,7 +32,7 @@ class Toggle extends Component {
         }
     }
 
-    onClickPause() {
+    onClickPause = () => {
         this.setState(pauseButtonPressedValue => ({ pauseButtonPressed: !pauseButtonPressedValue.pauseButtonPressed }));
         if (!this.state.pauseButtonPressed) {
             this.setState({ pauseImageSource: './Images/pauseActive.svg' });
@@ -49,7 +42,7 @@ class Toggle extends Component {
         }
     }
 
-    onClickStop() {
+    onClickStop = () => {
         this.setState(stopButtonPressedValue => ({ stopButtonPressed: !stopButtonPressedValue.stopButtonPressed }));
 
         if (!this.state.stopButtonPressed) {
@@ -60,15 +53,15 @@ class Toggle extends Component {
         }
     }
 
-    onMouseOverReset() {
+    onMouseOverReset = () => {
         this.setState({ resetImageSource: './Images/resetActive.svg' });
     }
 
-    onMouseLeaveReset() {
+    onMouseLeaveReset = () => {
         this.setState({ resetImageSource: './Images/reset.svg' });
     }
 
-    onClickReset() {
+    onClickReset = () => {
         console.log('Timer Resetted');
     }
 
@@ -77,9 +70,10 @@ class Toggle extends Component {
     }
 
     render() {
+        console.log(this.refs)
         return (
             <div>
-                <Timer ref="child" />
+                <Timer toggleState={this.state} ref="child" />
                 <div className='d-flex justify-content-center pt-5'>
                     <i className="play" ><img onClick={this.onClickPlay} src={require(`${this.state.playImageSource}`)} alt=""></img></i>
                     <i className="pause"><img onClick={this.onClickPause} src={require(`${this.state.pauseImageSource}`)} alt=""></img></i>

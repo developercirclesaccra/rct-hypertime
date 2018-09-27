@@ -4,8 +4,6 @@ import './App.css';
 // COMPONENTS
 import Body from './components/Body/Body';
 
-
-
 class App extends Component {
   render() {
     return (
